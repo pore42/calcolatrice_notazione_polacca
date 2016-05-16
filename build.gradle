@@ -1,0 +1,49 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'jacoco'
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+javadoc {
+    options {
+        links( 'http://docs.oracle.com/javase/8/docs/api/' )
+        encoding 'UTF-8'
+        docEncoding 'UTF-8'
+        charSet 'UTF-8'
+    }
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+        html.destination "${buildDir}/reports/jacoco"
+    }
+}
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.restlet.jse:org.restlet:2.3.6'
+    compile 'org.restlet.jse:org.restlet.ext.jackson:2.3.6'
+    testCompile 'junit:junit:4.12'
+    testCompile 'com.github.stefanbirkner:system-rules:1.16.0'
+    testCompile 'org.mockito:mockito-core:1.+'
+}
+
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'info.solidsoft.gradle.pitest:gradle-pitest-plugin:1.1.9'
+    }
+}
+apply plugin: 'info.solidsoft.pitest'
+
+pitest {
+    targetClasses = [ "it.unimi.di.sweng.lab09.*" ]
+}
