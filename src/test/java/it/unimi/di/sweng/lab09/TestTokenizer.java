@@ -20,5 +20,16 @@ public class TestTokenizer
 		assertEquals(false, s.hasNextToken());
 		
 	}
+	
+	@Test
+	public void testNum()
+	{
+		SimpleTokenizer s = new SimpleTokenizer("42");
+		assertEquals(true, s.hasNextToken());
+		assertEquals(42,s.nextToken().value, DELTA);
+		assertEquals(false, s.hasNextToken());
+	}
+	
+	
 
 }
