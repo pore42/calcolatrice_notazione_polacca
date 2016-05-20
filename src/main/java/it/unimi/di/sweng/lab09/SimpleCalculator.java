@@ -1,22 +1,32 @@
 package it.unimi.di.sweng.lab09;
 
-
 public class SimpleCalculator implements Calculator {
-	
+
 	private TokenizerFactory tokenizerF;
-	private Stack stack;
-	
-	public SimpleCalculator(TokenizerFactory tokenizerF, Stack stack) {
+	private StackFactory stackF;
+
+	public SimpleCalculator(TokenizerFactory tokenizerF, StackFactory stackF) {
 		this.tokenizerF = tokenizerF;
-		this.stack = stack;
+		this.stackF = stackF;
 	}
 
 	@Override
 	public double eval(String expression) {
+		Stack stack = stackF.stack();
 		Tokenizer tokenizer = tokenizerF.tokenizer(expression);
-		if ( !tokenizer.hasNextToken() ) return 0.0;
-		else
-			return tokenizer.nextToken().value;
+		while (tokenizer.hasNextToken()) {
+			Token t = tokenizer.nextToken();
+
+			switch (t.kind) {
+			case VALUE:
+				stack.push(t.value);
+				break;
+			case SUM:
+				stack.push(stack.pop() + stack.pop());
+				break;
+			}
+		}
+		return stack.isEmpty() ? 0 : stack.pop();
 	}
 
 }
