@@ -1,5 +1,7 @@
 package it.unimi.di.sweng.lab09;
 
+import java.util.NoSuchElementException;
+
 public class SimpleCalculator implements Calculator {
 
 	private TokenizerFactory tokenizerF;
@@ -25,25 +27,38 @@ public class SimpleCalculator implements Calculator {
 				stack.push(stack.pop() + stack.pop());
 				break;
 			case SUBRACTION: 
-			{
+			try{
 				double a = stack.pop(), b = stack.pop();
 				stack.push(b - a);
+			}catch(NoSuchElementException e){
+				throw new IllegalStateException();
 			}
 				break;
 			case PRODUCT:
 				stack.push(stack.pop() * stack.pop());
 				break;
 			case DIVISION: 
-			{
+			try{
 				double a = stack.pop();
 				double b = stack.pop();
 				stack.push(b / a);
+			}catch(NoSuchElementException e){
+				throw new IllegalStateException();
 			}
 				break;
 			}
 
 		}
-		return stack.isEmpty() ? 0 : stack.pop();
+		
+		if ( stack.isEmpty() )
+			return 0;
+		else {
+			double out = stack.pop();
+			if (stack.isEmpty())
+				return out;
+			else
+				throw new IllegalStateException();
+		}
 	}
 
 }
