@@ -64,7 +64,8 @@ public class TestSimpleStack
 		
 		
 		assertEquals(true, s.isEmpty());
-		
+		s.push(5);
+		assertEquals(false,s.isEmpty());
 	}
 	
 	
