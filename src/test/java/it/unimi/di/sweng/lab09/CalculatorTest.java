@@ -2,6 +2,7 @@ package it.unimi.di.sweng.lab09;
 
 import static org.junit.Assert.*;
 
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.Timeout;
@@ -24,10 +25,13 @@ public class CalculatorTest {
 	
 	@Mock TokenizerFactory tF;
 	
+	@Before
+	public void setUp(){
+		when(tF.tokenizer(anyString())).thenReturn(tokenizer);
+	}
+	
 	@Test
 	public void testEmptyString() throws Exception {
-		
-		when(tF.tokenizer(anyString())).thenReturn(tokenizer);
 				
 		Calculator c = new SimpleCalculator(tF,stack);
 		
