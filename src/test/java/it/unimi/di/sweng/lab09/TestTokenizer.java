@@ -39,6 +39,15 @@ public class TestTokenizer
 	}
 	
 	
+	@Test
+	public void testMultipleNum()
+	{
+		SimpleTokenizer s = new SimpleTokenizer("42 36");
+		assertEquals(true, s.hasNextToken());
+		assertEquals(42,s.nextToken().value, DELTA);
+		assertEquals(true, s.hasNextToken());
+		assertEquals(36,s.nextToken().value, DELTA);
+	}
 	
 	
 
