@@ -43,7 +43,20 @@ public class TestSimpleStack
 	
 	}
 	
-	
+	@Test
+	public void testpop()
+	{
+		
+		assertEquals(0, s.length());
+		s.push(5);
+		s.push(7);
+		assertEquals(2, s.length());
+		
+		s.pop();
+		assertEquals(1, s.length());
+		s.pop();
+		assertEquals(0, s.length());
+	}
 	
 
 	
