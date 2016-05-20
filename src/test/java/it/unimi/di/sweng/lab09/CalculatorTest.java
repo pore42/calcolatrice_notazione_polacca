@@ -38,5 +38,13 @@ public class CalculatorTest {
 		assertEquals(0.0,c.eval(""),DELTA);
 		
 	}
+	
+	@Test
+	public void testSingleNumber() throws Exception {
+Calculator c = new SimpleCalculator(tF,stack);
+  		when(tokenizer.hasNextToken()).thenReturn(true,false);
+  		when(tokenizer.nextToken()).thenReturn(Token.valueOf("1"));
+		assertEquals(1.0,c.eval("1"),DELTA);
+	}
 
 }

@@ -15,7 +15,8 @@ public class SimpleCalculator implements Calculator {
 	public double eval(String expression) {
 		Tokenizer tokenizer = tokenizerF.tokenizer(expression);
 		if ( !tokenizer.hasNextToken() ) return 0.0;
-		return 1;
+		else
+			return tokenizer.nextToken().value;
 	}
 
 }
