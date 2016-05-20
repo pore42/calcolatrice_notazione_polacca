@@ -63,5 +63,15 @@ public class CalculatorTest {
   		when(stack.pop()).thenReturn(1.0,2.0,3.0);
 		assertEquals(3.0,c.eval("2 1 +"),DELTA);
 	}
+	
+	@Test
+	public void testDiffernza() throws Exception {
+		Calculator c = new SimpleCalculator(tF,sF);
+  		when(tokenizer.hasNextToken()).thenReturn(true,true,true,false);
+  		when(tokenizer.nextToken()).thenReturn(Token.valueOf("2"),Token.valueOf("1"),Token.valueOf("-"));
+  		when(stack.isEmpty()).thenReturn(false);
+  		when(stack.pop()).thenReturn(1.0,2.0,1.0);
+		assertEquals(1.0,c.eval("2 1 -"),DELTA);
+	}
 
 }

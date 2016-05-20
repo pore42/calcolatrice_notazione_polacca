@@ -24,7 +24,11 @@ public class SimpleCalculator implements Calculator {
 			case SUM:
 				stack.push(stack.pop() + stack.pop());
 				break;
+			case SUBRACTION:
+				stack.push(stack.pop() + stack.pop());
+				break;
 			}
+			
 		}
 		return stack.isEmpty() ? 0 : stack.pop();
 	}
