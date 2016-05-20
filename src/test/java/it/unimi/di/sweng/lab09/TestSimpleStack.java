@@ -58,6 +58,16 @@ public class TestSimpleStack
 		assertEquals(0, s.length());
 	}
 	
+	@Test
+	public void testEmpty()
+	{
+		
+		
+		assertEquals(true, s.isEmpty());
+		
+	}
+	
+	
 
 	
 
