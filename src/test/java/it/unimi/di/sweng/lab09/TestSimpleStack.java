@@ -2,6 +2,8 @@ package it.unimi.di.sweng.lab09;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.NoSuchElementException;
+
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -30,6 +32,18 @@ public class TestSimpleStack
 		s.push(7);
 		assertEquals(2, s.length());	
 	}
+	
+	
+	
+	
+	@Test (expected=NoSuchElementException.class)
+	public void testemptyStack()
+	{
+		s.pop();
+	
+	}
+	
+	
 	
 
 	
