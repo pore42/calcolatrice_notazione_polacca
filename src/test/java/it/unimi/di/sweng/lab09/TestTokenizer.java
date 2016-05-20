@@ -74,5 +74,29 @@ public class TestTokenizer
 		assertEquals(-1 , tk.value, DELTA);
 	}
 	
+	
+	@Test
+	public void testComplexString()
+	{
+		SimpleTokenizer s = new SimpleTokenizer("+ 3 * 4 ");
+		assertEquals(true, s.hasNextToken());
+		Token tk = s.nextToken();
+		assertEquals(Token.Kind.SUM , tk.kind);
+		assertEquals(-1 , tk.value, DELTA);
+		
+		assertEquals(true, s.hasNextToken());
+		tk = s.nextToken();
+		assertEquals(3 , tk.value, DELTA);
+		
+		assertEquals(true, s.hasNextToken());
+		tk = s.nextToken();
+		assertEquals(Token.Kind.PRODUCT , tk.kind);
+		assertEquals(-1 , tk.value, DELTA);
+		
+		assertEquals(true, s.hasNextToken());
+		tk = s.nextToken();
+		assertEquals(4 , tk.value, DELTA);
+	}
+	
 
 }
