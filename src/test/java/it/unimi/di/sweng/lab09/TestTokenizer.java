@@ -30,6 +30,16 @@ public class TestTokenizer
 		assertEquals(false, s.hasNextToken());
 	}
 	
+	@Test (expected=IllegalArgumentException.class)
+	public void testUnoparsable()
+	{
+		SimpleTokenizer s = new SimpleTokenizer("pippo");
+		s.nextToken();
+
+	}
+	
+	
+	
 	
 
 }
