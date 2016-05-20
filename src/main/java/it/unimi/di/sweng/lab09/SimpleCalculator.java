@@ -38,6 +38,7 @@ public class SimpleCalculator implements Calculator {
 				case DIVISION: {
 					double a = stack.pop();
 					double b = stack.pop();
+					if (a == 0) throw new ArithmeticException();
 					stack.push(b / a);
 				}
 					break;

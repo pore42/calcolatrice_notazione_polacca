@@ -3,7 +3,9 @@ package it.unimi.di.sweng.lab09;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.Timeout;
 import org.junit.runner.RunWith;
 import org.mockito.InOrder;
 import org.mockito.Mock;
@@ -13,8 +15,8 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class CalculatorTestIntegrated {
 	
-	/*@Rule
-	public Timeout globalTimeout = Timeout.seconds(10); // 10 seconds max*/
+	@Rule
+	public Timeout globalTimeout = Timeout.seconds(10); // 10 seconds max
 
 	private static final double DELTA = .1E-10;
 

@@ -18,9 +18,9 @@ public class QATest {
 
 	@Before
 	public void setUp() {
-		calculator = new SimpleCalculator();
+		calculator = new SimpleCalculator(new SimpleTokenizerFactory(), new SimpleStackFactory());
 	}
-
+	
 	@Test
 	public void testEmpty() {
 		assertEquals(0, calculator.eval(""), DELTA);
