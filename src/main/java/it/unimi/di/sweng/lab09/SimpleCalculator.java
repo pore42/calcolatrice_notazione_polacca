@@ -25,7 +25,11 @@ public class SimpleCalculator implements Calculator {
 				stack.push(stack.pop() + stack.pop());
 				break;
 			case SUBRACTION:
-				stack.push(stack.pop() - stack.pop());
+				double a = stack.pop(), b = stack.pop();
+				stack.push(b - a);
+				break;
+			case PRODUCT:
+				stack.push(stack.pop() * stack.pop());
 				break;
 			}
 			

@@ -74,4 +74,13 @@ public class CalculatorTest {
 		assertEquals(1.0,c.eval("2 1 -"),DELTA);
 	}
 
+	@Test
+	public void testProdotto() throws Exception {
+		Calculator c = new SimpleCalculator(tF,sF);
+  		when(tokenizer.hasNextToken()).thenReturn(true,true,true,false);
+  		when(tokenizer.nextToken()).thenReturn(Token.valueOf("5"),Token.valueOf("2"),Token.valueOf("*"));
+  		when(stack.isEmpty()).thenReturn(false);
+  		when(stack.pop()).thenReturn(2.0,5.0,10.0);
+		assertEquals(10.0,c.eval("5 2 *"),DELTA);
+	}
 }
