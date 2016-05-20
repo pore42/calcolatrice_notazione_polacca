@@ -124,4 +124,14 @@ public class CalculatorTest {
 		c.eval("10 +");
 		
 	}
+	
+	@Test
+	public void testConcatenation() throws Exception {
+		Calculator c = new SimpleCalculator(tF,sF);
+		when(tokenizer.hasNextToken()).thenReturn(true,true,true,true,true,false);
+		when(tokenizer.nextToken()).thenReturn(Token.valueOf("10"),Token.valueOf("10"),Token.valueOf("+"),Token.valueOf("10"),Token.valueOf("+"));
+  		when(stack.pop()).thenReturn(10.0, 10.0, 20.0, 10.0, 30.0);
+  		when(stack.isEmpty()).thenReturn(false,true);
+		assertEquals(30.0, c.eval("10 10 + 10 +"), DELTA);
+	}
 }
