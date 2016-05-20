@@ -121,7 +121,7 @@ public class CalculatorTest {
   		when(tokenizer.hasNextToken()).thenReturn(true,true,false);
   		when(tokenizer.nextToken()).thenReturn(Token.valueOf("10"),Token.valueOf("+"));
   		when(stack.pop()).thenReturn(10.0).thenThrow(new IllegalStateException());
-		c.eval("10 +");
+		c.eval("10 /");
 		
 	}
 	

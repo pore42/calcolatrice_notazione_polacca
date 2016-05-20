@@ -13,44 +13,42 @@ public class SimpleCalculator implements Calculator {
 	}
 
 	@Override
-	public double eval(String expression) {
+	public double eval(String expression) throws IllegalArgumentException, IllegalStateException, ArithmeticException {
 		Stack stack = stackF.stack();
 		Tokenizer tokenizer = tokenizerF.tokenizer(expression);
 		while (tokenizer.hasNextToken()) {
 			Token t = tokenizer.nextToken();
+			try {
 
-			switch (t.kind) {
-			case VALUE:
-				stack.push(t.value);
-				break;
-			case SUM:
-				stack.push(stack.pop() + stack.pop());
-				break;
-			case SUBRACTION: 
-			try{
-				double a = stack.pop(), b = stack.pop();
-				stack.push(b - a);
-			}catch(NoSuchElementException e){
+				switch (t.kind) {
+				case VALUE:
+					stack.push(t.value);
+					break;
+				case SUM:
+					stack.push(stack.pop() + stack.pop());
+					break;
+				case SUBRACTION: {
+					double a = stack.pop(), b = stack.pop();
+					stack.push(b - a);
+				}
+					break;
+				case PRODUCT:
+					stack.push(stack.pop() * stack.pop());
+					break;
+				case DIVISION: {
+					double a = stack.pop();
+					double b = stack.pop();
+					stack.push(b / a);
+				}
+					break;
+				}
+			} catch (NoSuchElementException e) {
 				throw new IllegalStateException();
-			}
-				break;
-			case PRODUCT:
-				stack.push(stack.pop() * stack.pop());
-				break;
-			case DIVISION: 
-			try{
-				double a = stack.pop();
-				double b = stack.pop();
-				stack.push(b / a);
-			}catch(NoSuchElementException e){
-				throw new IllegalStateException();
-			}
-				break;
 			}
 
 		}
-		
-		if ( stack.isEmpty() )
+
+		if (stack.isEmpty())
 			return 0;
 		else {
 			double out = stack.pop();
