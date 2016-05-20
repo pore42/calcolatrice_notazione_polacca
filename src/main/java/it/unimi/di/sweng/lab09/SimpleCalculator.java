@@ -25,7 +25,7 @@ public class SimpleCalculator implements Calculator {
 				stack.push(stack.pop() + stack.pop());
 				break;
 			case SUBRACTION:
-				stack.push(stack.pop() + stack.pop());
+				stack.push(stack.pop() - stack.pop());
 				break;
 			}
 			
