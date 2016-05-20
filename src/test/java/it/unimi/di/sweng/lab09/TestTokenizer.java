@@ -49,6 +49,30 @@ public class TestTokenizer
 		assertEquals(36,s.nextToken().value, DELTA);
 	}
 	
+	@Test
+	public void testOps()
+	{
+		SimpleTokenizer s = new SimpleTokenizer("+ - * /");
+		assertEquals(true, s.hasNextToken());
+		Token tk = s.nextToken();
+		assertEquals(Token.Kind.SUM , tk.kind);
+		assertEquals(-1 , tk.value, DELTA);
+		
+		assertEquals(true, s.hasNextToken());
+		tk = s.nextToken();
+		assertEquals(Token.Kind.SUBRACTION , tk.kind);
+		assertEquals(-1 , tk.value, DELTA);
+		
+		assertEquals(true, s.hasNextToken());
+		tk = s.nextToken();
+		assertEquals(Token.Kind.PRODUCT , tk.kind);
+		assertEquals(-1 , tk.value, DELTA);
+		
+		assertEquals(true, s.hasNextToken());
+		tk = s.nextToken();
+		assertEquals(Token.Kind.DIVISION , tk.kind);
+		assertEquals(-1 , tk.value, DELTA);
+	}
 	
 
 }
